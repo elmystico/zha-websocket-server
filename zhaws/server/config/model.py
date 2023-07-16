@@ -10,8 +10,14 @@ from zhaws.model import BaseModel
 class BaseRadioConfiguration(BaseModel):
     """Base zigbee radio configuration for zhaws."""
 
-    type: Literal["ezsp", "xbee", "deconz", "zigate", "znp"]
+    type: Literal["zboss", "ezsp", "xbee", "deconz", "zigate", "znp"]
     path: str = "/dev/tty.SLAB_USBtoUART"
+
+
+class ZBOSSRadioConfiguration(BaseRadioConfiguration):
+    """ZBOSS radio configuration for zhaws."""
+
+    type: Literal["zboss"] = "zboss"
 
 
 class EZSPRadioConfiguration(BaseRadioConfiguration):
@@ -62,6 +68,7 @@ class ServerConfiguration(BaseModel):
     zigpy_configuration: ZigpyConfiguration = ZigpyConfiguration()
     radio_configuration: Annotated[
         Union[
+            ZBOSSRadioConfiguration,
             EZSPRadioConfiguration,
             XBeeRadioConfiguration,
             DeconzRadioConfiguration,
