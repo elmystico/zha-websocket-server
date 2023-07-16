@@ -9,6 +9,7 @@ import zigpy_deconz.zigbee.application
 import zigpy_xbee.zigbee.application
 import zigpy_zigate.zigbee.application
 import zigpy_znp.zigbee.application
+import zigpy_zboss.zigbee.application
 
 BAUD_RATES: Final[list[int]] = [
     2400,
@@ -26,7 +27,10 @@ BAUD_RATES: Final[list[int]] = [
 
 class RadioType(enum.Enum):
     """Possible options for radio type."""
-
+    
+    zboss = (
+        "ZBOSS = blabla",
+        zigpy_zboss.zigbee.application.ControllerApplication,
     znp = (
         "ZNP = Texas Instruments Z-Stack ZNP protocol: CC253x, CC26x2, CC13x2",
         zigpy_znp.zigbee.application.ControllerApplication,
